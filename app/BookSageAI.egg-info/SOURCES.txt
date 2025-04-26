@@ -1,0 +1,7 @@
+README.md
+setup.py
+app/BookSageAI.egg-info/PKG-INFO
+app/BookSageAI.egg-info/SOURCES.txt
+app/BookSageAI.egg-info/dependency_links.txt
+app/BookSageAI.egg-info/requires.txt
+app/BookSageAI.egg-info/top_level.txt
