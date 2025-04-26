@@ -2,7 +2,7 @@
 
 **Multi-Method Book Recommendation System**
 
-![Image](https://github.com/user-attachments/assets/6ad6b9b1-5799-45d4-bbc6-39252e4ba8f1)
+![Image](https://github.com/user-attachments/assets/bc72c776-4cc8-4966-a678-00efaee64334)
 ---
 
 ## 🎯 Project Goal
