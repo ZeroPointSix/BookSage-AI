@@ -1,8 +1,8 @@
 import streamlit as st
-from app.recommender import hybrid_recommendations, collaborative_recommendations, content_recommendations, get_popular_books
-from app.utils import fetch_book_info
-from app.data_loader import books_content
-from app.logger import logger
+from src.recommender import hybrid_recommendations, collaborative_recommendations, content_recommendations, get_popular_books
+from src.utils import fetch_book_info
+from src.data_loader import books_content
+from src.logger import logger
 
 st.set_page_config(page_title="📚 BookSage AI", layout="wide")
 st.title("📚 Welcome to BookSage AI!")
@@ -54,3 +54,12 @@ if st.sidebar.button("🎯 Get Recommendations"):
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
             logger.error(f"Streamlit error: {str(e)}")
+
+# add developer contact info
+st.markdown("---")
+st.markdown(
+    """
+    - [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/md-emon-hasan-695483237/)
+    - [![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/8801834363533)
+    """
+)

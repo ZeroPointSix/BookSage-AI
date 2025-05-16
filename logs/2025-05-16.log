@@ -1,0 +1,43 @@
+[2025-05-16 13:53:47,210] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\cf_model.pkl
+[2025-05-16 13:53:47,227] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\book_pivot.pkl
+[2025-05-16 13:53:47,238] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\tfidf_vectorizer.pkl
+[2025-05-16 13:53:47,252] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\content_sim_matrix.pkl
+[2025-05-16 13:53:47,253] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\title_to_idx.pkl
+[2025-05-16 13:53:47,256] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\books_content.pkl
+[2025-05-16 13:53:47,286] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\final_rating.pkl
+[2025-05-16 13:53:47,519] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\books_data.pkl
+[2025-05-16 13:54:11,195] INFO - Collaborative recommendations generated for: A Time to Kill
+[2025-05-16 13:54:11,196] ERROR - Error in content recommendations: index 953 is out of bounds for axis 0 with size 742
+[2025-05-16 13:54:11,196] INFO - Hybrid recommendations generated for: A Time to Kill
+[2025-05-16 13:54:32,091] INFO - Collaborative recommendations generated for: A Time to Kill
+[2025-05-16 13:54:37,498] ERROR - Error in content recommendations: index 953 is out of bounds for axis 0 with size 742
+[2025-05-16 13:54:37,523] INFO - Popular books fetched.
+[2025-05-16 13:54:49,384] ERROR - Error in content recommendations: index 3743 is out of bounds for axis 0 with size 742
+[2025-05-16 13:54:49,402] INFO - Popular books fetched.
+[2025-05-16 13:54:57,896] ERROR - Error in content recommendations: index 9621 is out of bounds for axis 0 with size 742
+[2025-05-16 13:54:57,914] INFO - Popular books fetched.
+[2025-05-16 13:55:34,881] INFO - Content-based recommendations generated for: The Kiss
+[2025-05-16 13:56:59,914] INFO - Collaborative recommendations generated for: The Kiss
+[2025-05-16 13:56:59,917] INFO - Content-based recommendations generated for: The Kiss
+[2025-05-16 13:56:59,917] INFO - Hybrid recommendations generated for: The Kiss
+[2025-05-16 13:57:12,515] INFO - Collaborative recommendations generated for: The Kiss
+[2025-05-16 13:57:17,835] INFO - Content-based recommendations generated for: The Kiss
+[2025-05-16 13:59:46,209] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\cf_model.pkl
+[2025-05-16 13:59:46,215] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\book_pivot.pkl
+[2025-05-16 13:59:46,218] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\tfidf_vectorizer.pkl
+[2025-05-16 13:59:46,221] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\content_sim_matrix.pkl
+[2025-05-16 13:59:46,222] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\title_to_idx.pkl
+[2025-05-16 13:59:46,224] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\books_content.pkl
+[2025-05-16 13:59:46,254] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\final_rating.pkl
+[2025-05-16 13:59:46,473] INFO - Loaded model/data from C:\Users\emon1\Desktop\Focus\BookSage-AI\src\..\models\books_data.pkl
+[2025-05-16 14:01:09,204] INFO - Collaborative recommendations generated for: The Kiss
+[2025-05-16 14:01:09,205] INFO - Content-based recommendations generated for: The Kiss
+[2025-05-16 14:01:09,208] INFO - Hybrid recommendations generated for: The Kiss
+[2025-05-16 14:01:17,973] INFO - Collaborative recommendations generated for: The Kiss
+[2025-05-16 14:01:26,058] INFO - Collaborative recommendations generated for: The Kiss
+[2025-05-16 15:31:32,126] INFO - Content-based recommendations generated for: The Kiss
+[2025-05-16 15:32:24,007] INFO - Collaborative recommendations generated for: The Kiss
+[2025-05-16 15:32:24,009] INFO - Content-based recommendations generated for: The Kiss
+[2025-05-16 15:32:24,009] INFO - Hybrid recommendations generated for: The Kiss
+[2025-05-16 15:32:32,784] INFO - Collaborative recommendations generated for: The Kiss
+[2025-05-16 15:32:39,830] INFO - Content-based recommendations generated for: The Kiss

@@ -8,7 +8,7 @@ setup(
     description='A Multi-Method Hybrid Book Recommendation System built with Streamlit, Collaborative Filtering and Content-Based Filtering.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/Md-Emon-Hasan/BookSageAI',  # your GitHub repo URL
+    url='https://github.com/Md-Emon-Hasan/BookSageAI',
     packages=find_packages(where='app'),
     package_dir={'': 'app'},
     include_package_data=True,

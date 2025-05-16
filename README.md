@@ -1,22 +1,64 @@
-## 🔥 BookSage AI
+# 🔥 **BookSage AI**
 
-**Multi-Method Book Recommendation System**
+**Multi-Method Book Recommendation System** Provide personalized book recommendations by combining **Collaborative Filtering** and **Content-Based Filtering** techniques, ensuring high accuracy even when user interaction data is sparse.
 
-![Image](https://github.com/user-attachments/assets/bc72c776-4cc8-4966-a678-00efaee64334)
----
-
-## 🎯 Project Goal
-
-Provide personalized book recommendations by combining **Collaborative Filtering** and **Content-Based Filtering** techniques, ensuring high accuracy even when user interaction data is sparse.
+[![BookSage AI](https://github.com/user-attachments/assets/ab5d829d-76b1-4207-bb08-442a0eacb684)](https://github.com/user-attachments/assets/ab5d829d-76b1-4207-bb08-442a0eacb684)
 
 ---
 
-# 📂 Project Structure for **BookSage AI**
+## 🎯 **Project Goal**
+In today’s digital era, readers are overwhelmed with millions of book options across various platforms, making it difficult to find books aligned with their interests, preferences, or past reading history. Traditional search-based discovery methods fall short in providing personalized and engaging reading suggestions.
+
+To address this challenge, the goal is to design and implement a **personalized hybrid book recommendation system** that leverages both **collaborative filtering** (based on user behavior and ratings) and **content-based filtering** (based on book metadata like author, publisher, and year). The system should support:
+
+* Image-based output (for UI-friendly recommendations),
+* A fallback mechanism for cold-start scenarios,
+* Adjustable weights for hybrid scoring,
+* Scalable performance for large datasets.
+
+---
+
+## 🌐 **Live Demo**
+
+🔗 **Try the Hybrid Book Recommendation System live:**
+👉 [https://booksage-ai.onrender.com/](https://booksage-ai.onrender.com/)
+
+---
+
+## 🧠 **Core Technologies**
+
+| **Category**               | **Technology/Resource**                                                                 |
+|----------------------------|----------------------------------------------------------------------------------------|
+| **Core Framework**         | Python 3.9+, Pandas, NumPy                                                            |
+| **Data Processing**        | Pandas (Data Cleaning), scikit-learn (Feature Engineering)                            |
+| **Recommendation Models**  | Hybrid System: Collaborative Filtering + Content-Based Filtering                      |
+| **Collaborative Filtering**| Scipy (csr_matrix), sklearn.neighbors (NearestNeighbors)                              |
+| **Content-Based Filtering**| sklearn (TfidfVectorizer, cosine_similarity)                                          |
+| **Data Sources**           | Book-Crossing Dataset (BX-Books, BX-Users, BX-Ratings)                               |
+| **Feature Engineering**    | TF-IDF (Title+Author+Publisher+Year combined features)                                |
+| **Model Persistence**      | Pickle (Model Serialization)                                                          |
+| **Evaluation Metrics**     | Implicit (Rating counts, Popularity filtering)                                        |
+| **Deployment Ready**       | Modular functions with error handling and fallback mechanisms                         |
+
+---
+
+## ⚖️ **Comparison with Standard Systems**
+
+| Feature | BookSage AI | Typical Recommenders |
+|---------|------------|----------------------|
+| Method Flexibility | ✅ 3 modes + hybrid tuning | ❌ Usually single-method |
+| Cold Start Handling | ✅ Popular books fallback | ❌ Often fails |
+| Explainability | ✅ Shows scores + metadata | ❌ Black-box results |
+| UI Customization | ✅ Adjustable weights/counts | ❌ Fixed parameters |
+
+---
+
+## 📂 Project Structure for **BookSage AI**
 
 ```bash
 BookSage-AI/
 │
-├── app/                            
+├── src/                            
 │   ├── __init__.py                 
 │   ├── config.py                 
 │   ├── data_loader.py   
@@ -52,69 +94,29 @@ BookSage-AI/
 ├── README.md                          # Project Documentation
 ├── .gitignore                         # Files/folders to ignore in GitHub repo
 ├── app.png                            # Demo
+├── demo.webm                          # Demo Video
 │
 └── LICENSE                            # License
 ```
 
 ---
 
-## 🧠 Core Technologies
-
-| Technology         | Purpose                                    |
-|---------------------|--------------------------------------------|
-| Python 3.11         | Core Programming Language                 |
-| Streamlit           | Frontend Web Application Framework        |
-| Scikit-learn        | Machine Learning Model Building           |
-| Pandas, NumPy       | Data Manipulation                         |
-| Docker              | Containerization                          |
-| GitHub Actions      | CI/CD Automation                          |
-| Logging (Python)    | Application Monitoring                    |
-
----
-
-## 📦 Major Components
-
-| Component                     | Description                                                  |
-|--------------------------------|--------------------------------------------------------------|
-| Data Loader                    | Data reading and preprocessing                              |
-| Content-Based Recommender      | Recommend books based on metadata similarities              |
-| Collaborative Filtering Engine | Recommend books based on user preferences                   |
-| Hybrid Recommendation Engine   | Combines content-based and collaborative outputs            |
-| Streamlit Frontend             | Interactive UI for Book Recommendations                     |
-| Centralized Logger             | Real-time Monitoring and Debugging Support                  |
-| CI/CD Pipeline (GitHub Actions)| Automated Testing, Docker Build, Deployment Automation      |
+### 🧬 **Architecture Diagram (Mermaid)**
+```mermaid
+graph TD
+    A[Raw Data] --> B[Data Preprocessing]
+    B --> C[Collaborative Filtering Model]
+    B --> D[Content-Based Model]
+    C --> E[User-Item Matrix]
+    D --> F[TF-IDF Features]
+    E --> G[Hybrid Recommender]
+    F --> G
+    G --> H[Recommendation via Streamlit]
+```
 
 ---
 
-## 🌐 Deployment Plan
-
-### Local Development
-
-- Virtual Environment setup
-- Running via `main run`
-- Local Logging for debugging
-
-### Dockerized Deployment
-
-- Dockerfile included
-- Docker Build and Run commands
-- Ideal for consistent environments across development, staging, and production.
-
-### CI/CD Pipeline (Implemented)
-
-- **GitHub Actions Workflow**:
-  - On Push or Pull Request:
-    - Linting and Code Quality Checks
-    - Run Unit Tests (Optional pytest Integration)
-    - Build Docker Image
-    - Push to DockerHub (Private/Public Repo)
-    - Deploy to Cloud (Future ready)
-  
-> ✅ Future Scope: Auto-deploy to AWS ECS / Azure App Service / GCP Cloud Run.
-
----
-
-## 🛠️ How to Setup (Locally)
+## 🛠️ **How to Setup (Locally)**
 
 ```bash
 # Clone the Repository
@@ -134,7 +136,7 @@ streamlit run main.py
 
 ---
 
-## 🐳 How to Setup (Dockerized)
+## 🐳 **How to Setup (Dockerized)**
 
 ```bash
 # Clone the Repository
@@ -150,33 +152,7 @@ docker run -p 8501:8501 booksage-ai
 
 ---
 
-## 🛡️ Logging Mechanism
-
-- Centralized Logger module with customizable Log Levels
-- Logs critical events like data loading issues, recommendation failures, server errors
-- Supports both **Console Output** and **File Saving**
-
-Example Usage:
-```python
-from app.logger import get_logger
-logger = get_logger()
-
-logger.info("User requested new book recommendations.")
-logger.error("Failed to generate collaborative recommendations.")
-```
-
----
-
-## 🧪 Test Setup (Optional)
-
-- Currently no pytest implemented.
-- Future Scope:
-  - Add Unit Tests for each recommender engine.
-  - Integrate Test Execution in CI/CD.
-
----
-
-## ⚙️ CI/CD Pipeline (Full Flow)
+## ⚙️ **CI/CD Pipeline (Full Flow)**
 
 | Step                           | Tool          | Purpose                              |
 |---------------------------------|---------------|--------------------------------------|
@@ -188,63 +164,8 @@ logger.error("Failed to generate collaborative recommendations.")
 | Deploy to Server (future ready) | GitHub Actions| Auto-deploy on Cloud or VPS server    |
 
 ---
-**Sample GitHub Actions Workflow (`.github/workflows/main.yml`)**
-```yaml
-name: Docker Image CI-CD
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
-    - name: Cache Docker layers
-      uses: actions/cache@v3
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-buildx-
-
-    - name: Build Docker image
-      run: docker build -t BookSage-AI .
-
-    - name: Test the application (Run tests inside container)
-      run: docker run --rm BookSage-AI pytest tests/
-```
-
----
-
-## 📑 Extra Features
-
-| Feature                    | Details                                              |
-|-----------------------------|------------------------------------------------------|
-| Adjustable Weighting        | User can adjust importance between Collaborative vs Content-Based results dynamically |
-| Popularity Fallback System  | If recommendation engines fail, fallback to Top-rated Books |
-| Modular Code Structure      | Easier Maintenance and Testing                      |
-| Scalability Ready           | Optimized for future Cloud Hosting                  |
-
----
-
-
-# 🚀 Conclusion
+## 🚀 **Conclusion**
 
 The **Hybrid Book Recommendation System** is a **production-ready, scalable**, and **cloud-deployable** application blending the strengths of multiple recommendation techniques, backed by a complete CI/CD pipeline ensuring continuous improvement and smooth deployments.
 
@@ -256,7 +177,7 @@ The **Hybrid Book Recommendation System** is a **production-ready, scalable**, a
 📧 **Email:** iconicemon01@gmail.com  
 💬 **WhatsApp:** [+8801834363533](https://wa.me/8801834363533)  
 🔗 **GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)  
-🔗 **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan)  
+🔗 **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan-695483237/)  
 🔗 **Facebook:** [Md Emon Hasan](https://www.facebook.com/mdemon.hasan2001/)
 
 ---
