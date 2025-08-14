@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='BookSageAI',
-    version='0.1.0',
+    version='0.2.0',
     author='Md Emon Hasan',
     author_email='iconicemon01@gmail.com',
     description='A Multi-Method Hybrid Book Recommendation System built with Streamlit, Collaborative Filtering and Content-Based Filtering.',
@@ -13,10 +13,15 @@ setup(
     package_dir={'': 'app'},
     include_package_data=True,
     install_requires=[
-        'streamlit',
         'scikit-learn',
         'pandas',
-        'numpy'
+        'numpy',
+        'Requests',
+        'scipy',
+        'pytest',
+        'flask',
+        'pathlib',
+        'gunicorn'
     ],
     classifiers=[
         'Programming Language :: Python :: 3',

@@ -1,8 +1,8 @@
 # 🔥 **BookSage AI**
 
-**Multi-Method Book Recommendation System** Provide personalized book recommendations by combining **Collaborative Filtering** and **Content-Based Filtering** techniques, ensuring high accuracy even when user interaction data is sparse.
+BookSage AI is a **hybrid book recommendation system** combining **Collaborative Filtering (KNN-based)** and **Content-Based (TF-IDF + Cosine Similarity)** models, with a weighted hybrid approach for personalized results. The project ingests and preprocesses large-scale book datasets, applies active-user and popular-book filtering, and dynamically generates recommendations enriched with metadata (title, author, publisher, year, and cover image). I engineered a **modular architecture** with clear data pipelines, model persistence, and reusable functions, ensuring scalability and maintainability. The system was deployed as a **Dockerized Flask web application** with a responsive HTML/CSS front-end, integrated into a **CI/CD pipeline** for automated builds and deployments. This design demonstrates proficiency in **ML model building, orchestration, backend API development, front-end integration, containerization, and production-grade deployment workflows**.
 
-[![BookSage AI](https://github.com/user-attachments/assets/ab5d829d-76b1-4207-bb08-442a0eacb684)](https://github.com/user-attachments/assets/ab5d829d-76b1-4207-bb08-442a0eacb684)
+[![BookSage AI](https://github.com/user-attachments/assets/67c963f6-5edf-4e4c-8bc5-030a4a4219e4)](https://github.com/user-attachments/assets/67c963f6-5edf-4e4c-8bc5-030a4a4219e4)
 
 ---
 
@@ -27,18 +27,25 @@ To address this challenge, the goal is to design and implement a **personalized 
 
 ## 🧠 **Core Technologies**
 
-| **Category**               | **Technology/Resource**                                                                 |
-|----------------------------|----------------------------------------------------------------------------------------|
-| **Core Framework**         | Python 3.9+, Pandas, NumPy                                                            |
-| **Data Processing**        | Pandas (Data Cleaning), scikit-learn (Feature Engineering)                            |
-| **Recommendation Models**  | Hybrid System: Collaborative Filtering + Content-Based Filtering                      |
-| **Collaborative Filtering**| Scipy (csr_matrix), sklearn.neighbors (NearestNeighbors)                              |
-| **Content-Based Filtering**| sklearn (TfidfVectorizer, cosine_similarity)                                          |
-| **Data Sources**           | Book-Crossing Dataset (BX-Books, BX-Users, BX-Ratings)                               |
-| **Feature Engineering**    | TF-IDF (Title+Author+Publisher+Year combined features)                                |
-| **Model Persistence**      | Pickle (Model Serialization)                                                          |
-| **Evaluation Metrics**     | Implicit (Rating counts, Popularity filtering)                                        |
-| **Deployment Ready**       | Modular functions with error handling and fallback mechanisms                         |
+| **Category**                | **Technology / Resource**                                                                 |
+| --------------------------- | ----------------------------------------------------------------------------------------- |
+| **Core Language**           | Python 3.11                                                                               |
+| **Backend Framework**       | Flask (REST API for recommendations)                                                      |
+| **Data Processing**         | Pandas (Data Cleaning & Merging), NumPy (Matrix Ops)                                      |
+| **Recommendation Models**   | **Hybrid System**: Collaborative Filtering + Content-Based Filtering                      |
+| **Collaborative Filtering** | SciPy (`csr_matrix`), scikit-learn (`NearestNeighbors`)                                   |
+| **Content-Based Filtering** | scikit-learn (`TfidfVectorizer`, `cosine_similarity`)                                     |
+| **Hybrid Fusion Logic**     | Weighted average score combination                                                        |
+| **Data Sources**            | Book-Crossing Dataset (`BX-Books`, `BX-Users`, `BX-Ratings`)                              |
+| **Feature Engineering**     | TF-IDF on combined features (`title`, `author`, `publisher`, `year`)                      |
+| **Model Persistence**       | Pickle (Model & Processed Data Serialization)                                             |
+| **Memory System**           | In-memory caching of processed data for faster responses                                  |
+| **Evaluation Metrics**      | Popularity-based filtering, Active user filtering                                         |
+| **Orchestration Layer**     | Modular service classes (`DataLoader`, `DataPreprocessor`, `ModelManager`, `HybridModel`) |
+| **Frontend**                | HTML5, Jinja2 Templates, Static CSS & JavaScript                                          |
+| **Deployment**              | Docker (Python 3.11-slim base), `requirements.txt` dependency locking                     |
+| **Portability**             | Pathlib-based cross-platform directory resolution                                         |
+| **Error Handling**          | Graceful fallbacks & empty results handling                                               |
 
 ---
 
@@ -58,45 +65,65 @@ To address this challenge, the goal is to design and implement a **personalized 
 ```bash
 BookSage-AI/
 │
-├── src/                            
-│   ├── __init__.py                 
-│   ├── config.py                 
-│   ├── data_loader.py   
-│   ├── utils.py   
-│   ├── recommender.py          
-│   ├── logger.py                     
-│   └── config.py                     
-│
-├── main.py                            # Streamlit frontend main app
-│
-├── main/                              # all in one code
-│   ├── main.py
-│
-├── data/                              # Data Folder
-│   ├── BX-Books.csv                    
-│   ├── BX-Book-Ratings.csv            
-│   └── BX-Users.csv 
-│
-├── jupyter/                            
-│   ├── experiment.ipynb                                    
-│
-├── tests/                             # Test Cases (Future Scope)
-│   ├── test_main.py
-│
-├── .github/                           # GitHub specific files
+├── .github/
 │   └── workflows/
-│       └── main.yml                   # GitHub Actions CI/CD workflow file
+│       └── main.yml
 │
-├── Dockerfile                         # Docker build file
-├── render.yml                         # render deploy file
-├── requirements.txt                   # Python dependencies
-├── setup.py                           # Python setup file
-├── README.md                          # Project Documentation
-├── .gitignore                         # Files/folders to ignore in GitHub repo
-├── app.png                            # Demo
-├── demo.webm                          # Demo Video
+├── data/
+│   ├── BX-Book-Ratings.csv
+│   ├── BX-Books.csv
+│   └── BX-Users.csv
 │
-└── LICENSE                            # License
+├── main/
+│   ├── __init__.py
+│   ├── collaborative_model.py
+│   ├── content_model.py
+│   ├── config.py
+│   ├── data_loader.py
+│   ├── data_preprocessor.py
+│   ├── hybrid_model.py
+│   ├── main.py
+│   ├── model_manager.py
+│   └── recommendation_engine.py
+│
+├── models/
+│   ├── book_pivot.pkl
+│   ├── books_content.pkl
+│   ├── books_data.pkl
+│   ├── cb_model.pkl
+│   ├── cf_model.pkl
+│   ├── content_sim_matrix.pkl
+│   ├── final_rating.pkl
+│   ├── tfidf_vectorizer.pkl
+│   └── title_to_idx.pkl
+│
+├── notebooks/
+│   └── experiment.ipynb
+│
+├── static/
+│   ├── css/
+│   │   ├── style_recommender.css
+│   │   └── style.css
+│   └── js/
+│       └── script.js
+│
+├── templates/
+│   ├── index.html
+│   └── recommendations.html
+│
+├── tests/
+│   └── test_app.py
+│
+├── .gitignore
+├── app.png
+├── app.py
+├── demo.mp4
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── render.yml
+├── requirements.txt
+└── setup.py
 ```
 
 ---
@@ -104,14 +131,26 @@ BookSage-AI/
 ### 🧬 **Architecture Diagram (Mermaid)**
 ```mermaid
 graph TD
-    A[Raw Data] --> B[Data Preprocessing]
+    A[Raw Data: BX-Books, BX-Users, BX-Ratings] --> B[Data Preprocessing & Feature Engineering]
     B --> C[Collaborative Filtering Model]
     B --> D[Content-Based Model]
-    C --> E[User-Item Matrix]
-    D --> F[TF-IDF Features]
-    E --> G[Hybrid Recommender]
+    
+    C --> E[User-Item Matrix - csr_matrix]
+    D --> F[TF-IDF Features - Title+Author+Publisher+Year]
+    
+    E --> G[Hybrid Recommender - Weighted Score Fusion]
     F --> G
-    G --> H[Recommendation via Streamlit]
+    
+    G --> H[Flask API - Endpoints for Recommendations]
+    H --> I[Frontend: HTML + Jinja2 + CSS/JS]
+    
+    subgraph Deployment
+        J[Docker Container]
+        J --> H
+        J --> I
+    end
+    
+    G --> K[Model Persistence - Pickle Serialization]
 ```
 
 ---
@@ -130,8 +169,8 @@ source venv/bin/activate
 # Install Dependencies
 pip install -r requirements.txt
 
-# Run Streamlit App
-streamlit run main.py
+# Run Flask App
+python app.py
 ```
 
 ---
@@ -149,25 +188,6 @@ docker build -t booksage-ai .
 # Run Docker Container
 docker run -p 8501:8501 booksage-ai
 ```
-
----
-
-## ⚙️ **CI/CD Pipeline (Full Flow)**
-
-| Step                           | Tool          | Purpose                              |
-|---------------------------------|---------------|--------------------------------------|
-| Code Push / Pull Request        | GitHub        | Trigger CI/CD Workflow               |
-| Code Quality & Linting          | flake8 (optional) | Ensure Coding Standards            |
-| Unit Testing (Future Scope)     | pytest        | Run All Test Cases                   |
-| Build Docker Image              | Docker        | Package the Application              |
-| Push Image to DockerHub         | GitHub Actions| Automatic Push after Build           |
-| Deploy to Server (future ready) | GitHub Actions| Auto-deploy on Cloud or VPS server    |
-
----
-
-## 🚀 **Conclusion**
-
-The **Hybrid Book Recommendation System** is a **production-ready, scalable**, and **cloud-deployable** application blending the strengths of multiple recommendation techniques, backed by a complete CI/CD pipeline ensuring continuous improvement and smooth deployments.
 
 ---
   

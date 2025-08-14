@@ -1,8 +1,9 @@
-streamlit
 scikit-learn
 pandas
 numpy
 Requests
-streamlit
 scipy
 pytest
+flask
+pathlib
+gunicorn
