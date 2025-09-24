@@ -1,5 +1,3 @@
-# model_manager.py
-
 import pickle
 from pathlib import Path
 from config import Config

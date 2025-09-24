@@ -1,9 +1,6 @@
-# config.py
-
 from pathlib import Path
 
 class Config:
-    """Configuration settings for the book recommendation system"""
     
     # Paths
     # BASE_DIR = Path(__file__).parent.absolute()

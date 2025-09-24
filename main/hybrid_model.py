@@ -1,10 +1,7 @@
-# hybrid_model.py
-
 from config import Config
 
 class HybridRecommendationModel:
-    """Hybrid recommendation model combining collaborative and content-based"""
-    
+
     def __init__(self, cf_model, cb_model):
         self.cf_model = cf_model
         self.cb_model = cb_model

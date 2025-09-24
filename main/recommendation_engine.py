@@ -1,5 +1,3 @@
-# recommendation_engine.py
-
 from data_loader import DataLoader
 from data_preprocessor import DataPreprocessor
 from collaborative_model import CollaborativeFilteringModel
@@ -9,7 +7,6 @@ from model_manager import ModelManager
 from config import Config
 
 class RecommendationEngine:
-    """Main recommendation engine that orchestrates all components"""
     
     def __init__(self):
         self.cf_model = None

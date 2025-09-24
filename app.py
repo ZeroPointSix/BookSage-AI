@@ -13,7 +13,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
 
-# Load models and data dynamically from current file's directory
+# Load models and data
 def load_models():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     models_dir = os.path.join(base_dir, "models")
@@ -39,7 +39,7 @@ def load_models():
 
 models = load_models()
 
-# Recommendation functions (same as in notebook)
+# Recommendation functions
 def collaborative_recommendations(book_title, top_n=9):
     """Generate collaborative filtering recommendations"""
     try:
@@ -223,7 +223,7 @@ def search_books():
     
     # Search in books_content first, then fallback to books
     matching_books = models['books_content'][models['books_content']['title'].str.lower().str.contains(query)]
-    if len(matching_books) < 5:  # If not enough matches, try the full books dataset
+    if len(matching_books) < 5:
         additional_matches = models['books'][models['books']['title'].str.lower().str.contains(query)]
         matching_books = pd.concat([matching_books, additional_matches]).drop_duplicates('title')
     

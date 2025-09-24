@@ -1,11 +1,9 @@
-# data_loader.py
-
 import pandas as pd
 from pathlib import Path
 from config import Config
 
 class DataLoader:
-    """Handle all data loading operations"""
+
     
     @staticmethod
     def load_books():

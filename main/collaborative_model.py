@@ -1,4 +1,3 @@
-# collaborative_model.py
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
@@ -6,7 +5,6 @@ from scipy.sparse import csr_matrix
 from config import Config
 
 class CollaborativeFilteringModel:
-    """Collaborative Filtering recommendation model"""
     
     def __init__(self):
         self.model = None

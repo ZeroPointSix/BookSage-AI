@@ -1,10 +1,7 @@
-# data_preprocessor.py
-
 import pandas as pd
 from config import Config
 
 class DataPreprocessor:
-    """Handle all data preprocessing operations"""
     
     def __init__(self, books, users, ratings):
         self.books = books

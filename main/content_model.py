@@ -1,12 +1,9 @@
-# content_model.py
-
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from config import Config
 
 class ContentBasedModel:
-    """Content-based recommendation model"""
     
     def __init__(self):
         self.tfidf = None
