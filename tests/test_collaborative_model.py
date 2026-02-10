@@ -172,7 +172,6 @@ class TestCollaborativeFilteringModel:
         cf_model.train(sample_final_rating_df)
 
         if cf_model.book_pivot is not None and len(cf_model.book_pivot.index) > 0:
-            first_title = cf_model.book_pivot.index[0]
 
             # Mock the pivot index to include a fake book title that won't be in DataFrames
             original_index = cf_model.book_pivot.index.tolist()
