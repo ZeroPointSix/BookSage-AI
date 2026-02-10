@@ -1,36 +1,25 @@
-# 🔥 **BookSage AI**
+# **BookSage AI: hybrid book recommendation system**
 
 BookSage AI is a **hybrid book recommendation system** combining **Collaborative Filtering (KNN-based)** and **Content-Based (TF-IDF + Cosine Similarity)** models, with a weighted hybrid approach for personalized results. The project ingests and preprocesses large-scale book datasets, applies active-user and popular-book filtering, and dynamically generates recommendations enriched with metadata (title, author, publisher, year, and cover image). I engineered a **modular architecture** with clear data pipelines, model persistence, and reusable functions, ensuring scalability and maintainability. The system was deployed as a **Dockerized Flask web application** with a responsive HTML/CSS front-end, integrated into a **CI/CD pipeline** for automated builds and deployments. This design demonstrates proficiency in **ML model building, orchestration, backend API development, front-end integration, containerization, and production-grade deployment workflows**.
 
+![BookSage-AI](app.png)
+<!-- ![BookSage-AI](demo.mp4) -->
 [![BookSage AI](https://github.com/user-attachments/assets/67c963f6-5edf-4e4c-8bc5-030a4a4219e4)](https://github.com/user-attachments/assets/67c963f6-5edf-4e4c-8bc5-030a4a4219e4)
 
 ---
 
-## 🎯 **Project Goal**
-In today’s digital era, readers are overwhelmed with millions of book options across various platforms, making it difficult to find books aligned with their interests, preferences, or past reading history. Traditional search-based discovery methods fall short in providing personalized and engaging reading suggestions.
+## **Live Demo**
 
-To address this challenge, the goal is to design and implement a **personalized hybrid book recommendation system** that leverages both **collaborative filtering** (based on user behavior and ratings) and **content-based filtering** (based on book metadata like author, publisher, and year). The system should support:
-
-* Image-based output (for UI-friendly recommendations),
-* A fallback mechanism for cold-start scenarios,
-* Adjustable weights for hybrid scoring,
-* Scalable performance for large datasets.
+**Try the Hybrid Book Recommendation System live:** [https://booksage-ai.onrender.com/](https://booksage-ai.onrender.com/)
 
 ---
 
-## 🌐 **Live Demo**
-
-🔗 **Try the Hybrid Book Recommendation System live:**
-👉 [https://booksage-ai.onrender.com/](https://booksage-ai.onrender.com/)
-
----
-
-## 🧠 **Core Technologies**
+## **Core Technologies**
 
 | **Category**                | **Technology / Resource**                                                                 |
 | --------------------------- | ----------------------------------------------------------------------------------------- |
 | **Core Language**           | Python 3.11                                                                               |
-| **Backend Framework**       | Flask (REST API for recommendations)                                                      |
+| **Backend Framework**       | FastAPI                                                     |
 | **Data Processing**         | Pandas (Data Cleaning & Merging), NumPy (Matrix Ops)                                      |
 | **Recommendation Models**   | **Hybrid System**: Collaborative Filtering + Content-Based Filtering                      |
 | **Collaborative Filtering** | SciPy (`csr_matrix`), scikit-learn (`NearestNeighbors`)                                   |
@@ -49,43 +38,47 @@ To address this challenge, the goal is to design and implement a **personalized 
 
 ---
 
-## ⚖️ **Comparison with Standard Systems**
+## **Comparison with Standard Systems**
 
 | Feature | BookSage AI | Typical Recommenders |
 |---------|------------|----------------------|
-| Method Flexibility | ✅ 3 modes + hybrid tuning | ❌ Usually single-method |
-| Cold Start Handling | ✅ Popular books fallback | ❌ Often fails |
-| Explainability | ✅ Shows scores + metadata | ❌ Black-box results |
-| UI Customization | ✅ Adjustable weights/counts | ❌ Fixed parameters |
+| Method Flexibility | 3 modes + hybrid tuning | Usually single-method |
+| Cold Start Handling | Popular books fallback | Often fails |
+| Explainability | Shows scores + metadata | Black-box results |
+| UI Customization | Adjustable weights/counts | Fixed parameters |
 
 ---
 
-## 📂 Project Structure for **BookSage AI**
+## **Project Structure**
 
-```bash
+## Project Structure
+
+```
 BookSage-AI/
-│
 ├── .github/
 │   └── workflows/
 │       └── main.yml
-│
+├── app/
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── logger.py
+│   │   ├── models.py
+│   │   └── __init__.py
+│   ├── services/
+│   │   ├── collaborative_model.py
+│   │   ├── content_model.py
+│   │   ├── data_loader.py
+│   │   ├── data_preprocessor.py
+│   │   ├── hybrid_model.py
+│   │   ├── model_manager.py
+│   │   ├── recommendation_engine.py
+│   │   └── __init__.py
+│   ├── main.py
+│   └── __init__.py
 ├── data/
 │   ├── BX-Book-Ratings.csv
 │   ├── BX-Books.csv
 │   └── BX-Users.csv
-│
-├── main/
-│   ├── __init__.py
-│   ├── collaborative_model.py
-│   ├── content_model.py
-│   ├── config.py
-│   ├── data_loader.py
-│   ├── data_preprocessor.py
-│   ├── hybrid_model.py
-│   ├── main.py
-│   ├── model_manager.py
-│   └── recommendation_engine.py
-│
 ├── models/
 │   ├── book_pivot.pkl
 │   ├── books_content.pkl
@@ -96,39 +89,50 @@ BookSage-AI/
 │   ├── final_rating.pkl
 │   ├── tfidf_vectorizer.pkl
 │   └── title_to_idx.pkl
-│
 ├── notebooks/
 │   └── experiment.ipynb
-│
 ├── static/
 │   ├── css/
-│   │   ├── style_recommender.css
-│   │   └── style.css
+│   │   ├── style.css
+│   │   └── style_recommendor.css
 │   └── js/
 │       └── script.js
-│
 ├── templates/
 │   ├── index.html
 │   └── recommendations.html
-│
 ├── tests/
-│   └── test_app.py
-│
+│   ├── conftest.py
+│   ├── test_collaborative_model.py
+│   ├── test_config.py
+│   ├── test_content_model.py
+│   ├── test_data_loader.py
+│   ├── test_data_preprocessor.py
+│   ├── test_endpoints.py
+│   ├── test_hybrid_model.py
+│   ├── test_logger.py
+│   ├── test_models.py
+│   ├── test_model_manager.py
+│   ├── test_recommendation_engine.py
+│   └── __init__.py
+├── .flake8
 ├── .gitignore
 ├── app.png
-├── app.py
 ├── demo.mp4
+├── docker-compose.yml
 ├── Dockerfile
 ├── LICENSE
+├── pyproject.toml
 ├── README.md
 ├── render.yml
 ├── requirements.txt
-└── setup.py
+├── run.py
+├── setup.py
+└── train_models.py
 ```
 
 ---
 
-### 🧬 **Architecture Diagram (Mermaid)**
+## **Architecture Diagram (Mermaid)**
 ```mermaid
 graph TD
     A[Raw Data: BX-Books, BX-Users, BX-Ratings] --> B[Data Preprocessing & Feature Engineering]
@@ -155,49 +159,91 @@ graph TD
 
 ---
 
-## 🛠️ **How to Setup (Locally)**
+## Quick Start
+
+### Prerequisites
+
+- Python 3.10+
+- pip
+
+### Installation
 
 ```bash
-# Clone the Repository
+# Clone the repository
 git clone https://github.com/Md-Emon-Hasan/BookSage-AI.git
-cd hybrid-book-recommender
+cd BookSage-AI
 
-# Setup Virtual Environment
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
 
-# Install Dependencies
+# Install dependencies
 pip install -r requirements.txt
+```
 
-# Run Flask App
-python app.py
+### Running the Application
+
+```bash
+# Simple start (recommended)
+python run.py
+
+# Or with custom options
+python run.py --host 0.0.0.0 --port 8000
+
+# Train models first, then start server
+python run.py --train
+
+# Production mode (no auto-reload)
+python run.py --prod
+
+# Alternative: using uvicorn directly
+uvicorn app.main:app --reload
+
+# Open http://localhost:8000 in your browser
 ```
 
 ---
 
-## 🐳 **How to Setup (Dockerized)**
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Home page with popular books |
+| POST | `/recommend` | Get book recommendations |
+| GET | `/search_books` | Search books by title |
+| GET | `/api/health` | Health check |
+
+## Docker
 
 ```bash
-# Clone the Repository
-git clone https://github.com/Md-Emon-Hasan/BookSage-AI.git
-cd BookSage-AI
+# Build and run
+docker-compose up -d
 
-# Build Docker Image
-docker build -t booksage-ai .
+# View logs
+docker-compose logs -f
 
-# Run Docker Container
-docker run -p 8501:8501 booksage-ai
+# Stop
+docker-compose down
+```
+
+## Testing
+
+```bash
+# Run all tests
+pytest tests/ -v
+
+# Run with coverage
+pytest tests/ -v --cov=app --cov-report=term-missing
 ```
 
 ---
   
-✍️ **Prepared by:**  
+**Prepared by:**  
 
 **Md Emon Hasan**  
-📧 **Email:** iconicemon01@gmail.com  
-💬 **WhatsApp:** [+8801834363533](https://wa.me/8801834363533)  
-🔗 **GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)  
-🔗 **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan-695483237/)  
-🔗 **Facebook:** [Md Emon Hasan](https://www.facebook.com/mdemon.hasan2001/)
-
----
+**Email:** [emon.mlengineer@gmail.com](mailto:emon.mlengineer@gmail.com)
+**WhatsApp:** [+8801834363533](https://wa.me/8801834363533)  
+**GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)  
+**LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan-695483237/)  
+**Facebook:** [Md Emon Hasan](https://www.facebook.com/mdemon.hasan2001/)

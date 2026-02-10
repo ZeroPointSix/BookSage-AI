@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  booksage-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: booksage-ai
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Development service with hot reload
+  booksage-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: booksage-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    profiles:
+      - dev
