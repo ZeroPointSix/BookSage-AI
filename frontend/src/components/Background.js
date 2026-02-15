@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Background = () => {
     const [particles] = useState(() => Array.from({ length: 15 }).map((_, i) => ({

@@ -3,7 +3,8 @@ from contextlib import asynccontextmanager
 from typing import Any
 
 import pandas as pd
-from fastapi import FastAPI, Form, Query, Request
+from fastapi import FastAPI, Form, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.core.config import Config
@@ -45,7 +46,6 @@ app = FastAPI(
 )
 
 # CORS configuration for development
-from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
