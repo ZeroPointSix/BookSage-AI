@@ -1,28 +1,29 @@
-"""Entry point for BookSage-AI."""
-
-import argparse
+import subprocess
 import sys
+import os
 
-import uvicorn
+# Kill existing processes on ports
+subprocess.run("taskkill /F /IM python.exe /FI \"WINDOWTITLE eq *uvicorn*\" 2>nul", shell=True, capture_output=True)
+subprocess.run("taskkill /F /FI \"WINDOWTITLE eq *vite*\" 2>nul", shell=True, capture_output=True)
 
+root = os.path.dirname(os.path.abspath(__file__))
 
-def main():
-    """Start the BookSage-AI server."""
-    parser = argparse.ArgumentParser(description="BookSage-AI Server")
-    parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=8000)
-    parser.add_argument("--prod", action="store_true")
+print("Starting BookSage-AI...")
+print("-" * 50)
 
-    args = parser.parse_args()
+# Start backend and frontend
+backend = subprocess.Popen([sys.executable, "run.py", "--prod"], cwd=f"{root}/backend", shell=True)
+frontend = subprocess.Popen(["npm", "run", "dev"], cwd=f"{root}/frontend", shell=True)
 
-    uvicorn.run(
-        "app.main:app",
-        host=args.host,
-        port=args.port,
-        reload=not args.prod,
-        log_level="info",
-    )
+print("\nServices started!")
+print("Backend:  http://127.0.0.1:8000")
+print("Frontend: http://localhost:5173")
+print("\nPress Ctrl+C to stop.\n")
 
-
-if __name__ == "__main__":
-    main()
+try:
+    backend.wait()
+except KeyboardInterrupt:
+    print("\n\nStopping services...")
+    subprocess.run(["taskkill", "/F", "/T", "/PID", str(backend.pid)], capture_output=True)
+    subprocess.run(["taskkill", "/F", "/T", "/PID", str(frontend.pid)], capture_output=True)
+    print("Stopped successfully!")
