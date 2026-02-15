@@ -46,6 +46,7 @@ app = FastAPI(
 
 # CORS configuration for development
 from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

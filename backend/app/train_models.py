@@ -15,8 +15,8 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from app.services.recommendation_engine import RecommendationEngine
 from app.core.logger import logger
+from app.services.recommendation_engine import RecommendationEngine
 
 
 def main():

@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 const Background = () => {
-    const [particles, setParticles] = useState([]);
-
-    useEffect(() => {
-        const newParticles = Array.from({ length: 15 }).map((_, i) => ({
-            id: i,
-            left: `${Math.random() * 100}%`,
-            delay: `${Math.random() * 5}s`,
-            duration: `${15 + Math.random() * 10}s`,
-            size: `${Math.random() * 20 + 5}px`,
-        }));
-        setParticles(newParticles);
-    }, []);
+    const [particles] = useState(() => Array.from({ length: 15 }).map((_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 5}s`,
+        duration: `${15 + Math.random() * 10}s`,
+        size: `${Math.random() * 20 + 5}px`,
+    })));
 
     return (
         <>
