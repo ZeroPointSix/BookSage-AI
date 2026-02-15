@@ -32,7 +32,7 @@ asyncio_mode = "auto"
 
 [tool.coverage.run]
 source = ["app"]
-omit = ["*/tests/*", "*/__pycache__/*"]
+omit = ["*/tests/*", "*/__pycache__/*", "app/train_models.py"]
 
 [tool.coverage.report]
 exclude_lines = [

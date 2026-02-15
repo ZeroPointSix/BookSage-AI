@@ -241,10 +241,14 @@ class TestRecommendationEngine:
         books_content = pd.DataFrame({
             "title": ["Other Book"],
             "author": ["Other Author"],
+            "year": ["2000"],
+            "publisher": ["Publisher"],
             "img_url": ["http://example.com/other.jpg"]
         })
         books = sample_books_content_df.copy()
         books["img_url"] = "http://example.com/book.jpg"
+        books["year"] = "2000"
+        books["publisher"] = "Publisher"
 
         engine.processed_data = {
             "books_content": books_content,
@@ -387,11 +391,15 @@ class TestRecommendationEngine:
         books_content = pd.DataFrame({
             "title": [],
             "author": [],
+            "year": [],
+            "publisher": [],
             "img_url": []
         })
         books = pd.DataFrame({
             "title": [],
             "author": [],
+            "year": [],
+            "publisher": [],
             "img_url": []
         })
 
@@ -413,6 +421,8 @@ class TestRecommendationEngine:
         books_content = pd.DataFrame({
             "title": ["The Great Gatsby"],
             "author": ["F. Scott Fitzgerald"],
+            "year": ["1925"],
+            "publisher": ["Scribner"],
             "img_url": [None]  # Invalid image
         })
 
