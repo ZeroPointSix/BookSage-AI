@@ -3417,3 +3417,9 @@
 2026-02-20 19:01:05 - booksage - DEBUG - Generating hybrid recommendations for: The Lovely Bones: A Novel
 2026-02-20 19:01:05 - booksage - DEBUG - Generated 10 hybrid recommendations
 2026-02-20 19:01:05 - booksage - INFO - Generated 10 hybrid recommendations for 'The Lovely Bones: A Novel'
+2026-02-20 20:44:59 - booksage - INFO - Starting BookSage-AI application...
+2026-02-20 20:44:59 - booksage - INFO - Checking for existing trained models...
+2026-02-20 20:44:59 - booksage - INFO - Loading models and processed data...
+2026-02-20 20:44:59 - booksage - INFO - All models loaded from: c:\Users\emon1\Desktop\New folder\BookSage-AI\backend\app\models
+2026-02-20 20:44:59 - booksage - INFO - Models loaded successfully!
+2026-02-20 20:45:16 - booksage - INFO - Generated 10 content recommendations for 'Bridget Jones's Diary'

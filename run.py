@@ -39,8 +39,31 @@ def check_dependencies():
             print("Error: Failed to install backend dependencies. Please run 'pip install -r backend/requirements.txt' manually.")
             sys.exit(1)
 
+def check_models():
+    """Check if recommendation models are trained."""
+    models_dir = os.path.join(root, "backend", "app", "models")
+    indicator_file = os.path.join(models_dir, "cf_model.pkl")
+    
+    if not os.path.exists(indicator_file):
+        print("\n" + "!" * 50)
+        print("WARNING: AI Recommendation models not found!")
+        print("The application will run, but recommendations will be empty.")
+        print("!" * 50)
+        
+        choice = input("\nWould you like to train the models now? (y/N): ").lower()
+        if choice == 'y':
+            print("\nStarting model training... This may take a few minutes.")
+            try:
+                subprocess.run([sys.executable, "app/train_models.py"], cwd=os.path.join(root, "backend"), check=True)
+                print("\nModels trained successfully!\n")
+            except subprocess.CalledProcessError:
+                print("\nError: Model training failed. You can try running 'python app/train_models.py' manually in the backend folder.\n")
+        else:
+            print("\nSkipping model training. You can train them later using 'python app/train_models.py' in the backend folder.\n")
+
 print("Checking environment and dependencies...")
 check_dependencies()
+check_models()
 
 print("-" * 50)
 print("Starting BookSage-AI...")
