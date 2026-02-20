@@ -1,9 +1,36 @@
 # **BookSage AI: hybrid book recommendation system**
 
+<p align="center">
+  <a href="https://scikit-learn.org/"><img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-learn"></a>
+  <a href="https://pandas.pydata.org/"><img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas"></a>
+  <a href="https://numpy.org/"><img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy"></a>
+  <a href="https://scipy.org/"><img src="https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white" alt="SciPy"></a>
+</p>
+
+<p align="center">
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"></a>
+  <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind"></a>
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"></a>
+</p>
+
 BookSage AI is a **hybrid book recommendation system** combining **Collaborative Filtering (KNN-based)** and **Content-Based (TF-IDF + Cosine Similarity)** models, with a weighted hybrid approach for personalized results. The project ingests and preprocesses large-scale book datasets, applies active-user and popular-book filtering, and dynamically generates recommendations enriched with metadata (title, author, publisher, year, and cover image). I engineered a **modern, monolithic architecture** with separate **FastAPI JSON API** and **React (Tailwind/DaisyUI) Frontend**, ensuring scalability and maintainability. The system is fully containerized with **Docker**, featuring automated orchestration and a robust **CI/CD pipeline** with 100% backend test coverage and comprehensive frontend unit tests. This design demonstrates proficiency in **ML model building, asynchronous API development, modern SPA implementation, containerization, and industry-grade deployment workflows**.
 
-![BookSage-AI](app.png)
-[![BookSage AI](https://github.com/user-attachments/assets/67c963f6-5edf-4e4c-8bc5-030a4a4219e4)](https://github.com/user-attachments/assets/67c963f6-5edf-4e4c-8bc5-030a4a4219e4)
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/648d13d4-12d7-4fbe-95ca-a7684430016f" width="100%" controls>
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<div align="center">
+  <img src="app.png" alt="BookSage-AI" width="100%">
+</div>
+
+<div align="center">
+  <img src="app-1.png" alt="BookSage-AI" width="100%">
+</div>
 
 ---
 
@@ -136,7 +163,8 @@ BookSage-AI/
 │   └── experiment.ipynb         
 |
 ├── .gitignore                   # Project-wide ignore rules
-├── demo.png                     # Demo picture
+├── app.png                      # Demo picture
+├── app-1.png                    # Demo picture
 ├── demo.mp4                     # Demo video
 ├── docker-compose.yml   
 ├── LICENSE   
@@ -174,31 +202,28 @@ graph TD
 
 ---
 
-## Quick Start
+## Quick Start (Automated)
 
 ### Prerequisites
 
 - Python 3.10+
-- pip
+- Node.js & npm
 
-### Installation
+### One-Click Setup & Run
+
+The project includes an intelligent launcher that automatically handles dependency installation for both the backend and frontend.
 
 ```bash
 # Clone the repository
 git clone https://github.com/Md-Emon-Hasan/BookSage-AI.git
 cd BookSage-AI
 
-# 1. Setup Backend
-cd backend
-python -m venv venv
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # Linux/Mac
-pip install -r requirements.txt
-
-# 2. Setup Frontend
-cd ../frontend
-npm install
+# Run the automated setup and launcher
+python run.py
 ```
+
+> [!TIP]
+> The script will automatically detect if `node_modules` or Python packages are missing and install them for you before starting the services.
 
 ### Running the Application
 
