@@ -3437,3 +3437,21 @@
 2026-03-02 17:37:50 - booksage - INFO - Generated 10 collaborative recommendations for 'The Lovely Bones: A Novel'
 2026-03-02 17:37:52 - booksage - INFO - Generated 10 collaborative recommendations for 'The Lovely Bones: A Novel'
 2026-03-02 17:37:56 - booksage - INFO - Generated 10 content recommendations for 'The Lovely Bones: A Novel'
+2026-03-02 22:37:13 - booksage - INFO - Starting BookSage-AI application...
+2026-03-02 22:37:13 - booksage - INFO - Checking for existing trained models...
+2026-03-02 22:37:13 - booksage - INFO - Loading models and processed data...
+2026-03-02 22:37:14 - booksage - INFO - All models loaded from: C:\Users\emon1\Desktop\zzz\BookSage-AI\backend\app\models
+2026-03-02 22:37:14 - booksage - INFO - Models loaded successfully!
+2026-03-02 22:37:34 - booksage - DEBUG - Generating hybrid recommendations for: The Lovely Bones: A Novel
+2026-03-02 22:37:34 - booksage - DEBUG - Generated 10 hybrid recommendations
+2026-03-02 22:37:34 - booksage - INFO - Generated 10 hybrid recommendations for 'The Lovely Bones: A Novel'
+2026-03-02 22:37:36 - booksage - DEBUG - Generating hybrid recommendations for: The Lovely Bones: A Novel
+2026-03-02 22:37:36 - booksage - DEBUG - Generated 10 hybrid recommendations
+2026-03-02 22:37:36 - booksage - INFO - Generated 10 hybrid recommendations for 'The Lovely Bones: A Novel'
+2026-03-02 22:37:37 - booksage - INFO - Generated 10 collaborative recommendations for 'The Lovely Bones: A Novel'
+2026-03-02 22:37:38 - booksage - INFO - Generated 10 content recommendations for 'The Lovely Bones: A Novel'
+2026-03-02 22:39:17 - booksage - INFO - Starting BookSage-AI application...
+2026-03-02 22:39:17 - booksage - INFO - Checking for existing trained models...
+2026-03-02 22:39:17 - booksage - INFO - Loading models and processed data...
+2026-03-02 22:39:17 - booksage - INFO - All models loaded from: C:\Users\emon1\Desktop\zzz\BookSage-AI\backend\app\models
+2026-03-02 22:39:17 - booksage - INFO - Models loaded successfully!
