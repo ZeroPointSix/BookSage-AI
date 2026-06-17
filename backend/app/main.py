@@ -1,4 +1,4 @@
-"""FastAPI application for BookSage-AI."""
+"""FastAPI application for the Chinese BookSage demo."""
 from contextlib import asynccontextmanager
 from typing import Any
 
@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
     global engine
 
     # Startup: Load models
-    logger.info("Starting BookSage-AI application...")
+    logger.info("Starting 书灵 BookSage application...")
     Config.ensure_directories()
 
     engine = RecommendationEngine()
@@ -34,13 +34,13 @@ async def lifespan(app: FastAPI):
     yield
 
     # Shutdown
-    logger.info("Shutting down BookSage-AI application...")
+    logger.info("Shutting down 书灵 BookSage application...")
 
 
 # Create FastAPI app
 app = FastAPI(
-    title="BookSage-AI",
-    description="AI-powered book recommendation system",
+    title="书灵 BookSage",
+    description="基于协同过滤、内容相似度与混合策略的智能图书推荐系统",
     version="2.0.0",
     lifespan=lifespan
 )
@@ -58,7 +58,7 @@ app.add_middleware(
 
 @app.get("/api/popular", response_class=JSONResponse)
 async def get_popular_books() -> list[dict[str, Any]]:
-    """Get popular books."""
+    """Return popular books for the homepage."""
     popular_books = []
     if engine and engine.is_trained:
         popular_books = engine.get_popular_books(limit=10)
@@ -70,7 +70,7 @@ async def recommend(
     book_title: str = Form(...),
     method: str = Form(default="hybrid")
 ) -> dict[str, Any]:
-    """Get book recommendations."""
+    """Return book recommendations for a title and method."""
     recommendations: list[dict[str, Any]] = []
     selected_book: dict[str, Any] | None = None
 
@@ -157,6 +157,8 @@ async def health_check() -> dict[str, Any]:
     """
     return {
         "status": "healthy",
+        "app_name": "书灵 BookSage",
+        "message": "服务运行正常",
         "models_loaded": engine.is_trained if engine else False,
         "version": "2.0.0"
     }

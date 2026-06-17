@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Sparkles, Sidebar as Shuffle, Users, BookOpen } from 'lucide-react';
 import BookCard from '../components/BookCard';
+import { METHOD_META } from '../utils/recommendationLabels';
 
 const HomeView = ({ popularBooks, onRecommend }) => {
     const [query, setQuery] = useState('');
@@ -30,6 +31,19 @@ const HomeView = ({ popularBooks, onRecommend }) => {
         setShowButtons(true);
     };
 
+    const revealRecommendationMethods = () => {
+        if (query.trim()) {
+            setShowButtons(true);
+        }
+    };
+
+    const requestRecommendation = (method) => {
+        const title = query.trim();
+        if (title) {
+            onRecommend(title, method);
+        }
+    };
+
     return (
         <div className="home-view animate-in">
             {/* Hero Section */}
@@ -37,13 +51,12 @@ const HomeView = ({ popularBooks, onRecommend }) => {
                 <div className="container mx-auto max-w-4xl">
                     <div className="hero-badge cursor-default">
                         <Sparkles size={14} className="text-white" />
-                        <span>AI-Powered Recommendations</span>
+                        <span>AI 智能图书推荐</span>
                     </div>
 
-                    <h1 className="hero-title">BookSage-AI</h1>
+                    <h1 className="hero-title">书灵 BookSage</h1>
                     <p className="hero-subtitle">
-                        Discover your next favorite book with our intelligent hybrid recommendation engine
-                        that learns from millions of readers
+                        基于协同过滤、内容相似度与混合策略，为读者快速发现下一本值得阅读的书。
                     </p>
 
                     <div className="search-container max-w-xl mx-auto relative z-30">
@@ -51,14 +64,15 @@ const HomeView = ({ popularBooks, onRecommend }) => {
                             <input
                                 type="text"
                                 className="flex-1 py-4 px-6 text-text-primary focus:outline-none text-[1rem]"
-                                placeholder="Search for a book you love..."
+                                placeholder="搜索一本你喜欢的书..."
                                 value={query}
                                 onChange={handleSearchChange}
-                                onKeyDown={(e) => e.key === 'Enter' && setShowButtons(true)}
+                                onKeyDown={(e) => e.key === 'Enter' && revealRecommendationMethods()}
                             />
                             <button
                                 className="search-btn-accent"
-                                onClick={() => setShowButtons(true)}
+                                onClick={revealRecommendationMethods}
+                                aria-label="显示推荐方式"
                             >
                                 <Search size={20} />
                             </button>
@@ -85,22 +99,22 @@ const HomeView = ({ popularBooks, onRecommend }) => {
                         {showButtons && (
                             <div className="recommend-buttons mt-6 flex flex-wrap justify-center gap-3 animate-slide-up">
                                 <button
-                                    onClick={() => onRecommend(query, 'hybrid')}
+                                    onClick={() => requestRecommendation('hybrid')}
                                     className="bg-gradient-to-r from-[#f59e0b] to-[#d97706] text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2"
                                 >
-                                    <Shuffle size={16} /> Hybrid
+                                    <Shuffle size={16} /> {METHOD_META.hybrid.label}
                                 </button>
                                 <button
-                                    onClick={() => onRecommend(query, 'collaborative')}
+                                    onClick={() => requestRecommendation('collaborative')}
                                     className="bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2"
                                 >
-                                    <Users size={16} /> Collab
+                                    <Users size={16} /> {METHOD_META.collaborative.label}
                                 </button>
                                 <button
-                                    onClick={() => onRecommend(query, 'content')}
+                                    onClick={() => requestRecommendation('content')}
                                     className="bg-gradient-to-r from-[#10b981] to-[#059669] text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2"
                                 >
-                                    <BookOpen size={16} /> Content
+                                    <BookOpen size={16} /> {METHOD_META.content.label}
                                 </button>
                             </div>
                         )}
@@ -112,30 +126,30 @@ const HomeView = ({ popularBooks, onRecommend }) => {
             <section className="py-20 bg-white border-b border-border">
                 <div className="container mx-auto max-w-6xl px-4 text-center">
                     <div className="mb-12">
-                        <h2 className="text-2xl font-bold text-text-primary mb-2">How It Works</h2>
-                        <p className="text-text-secondary text-sm">Choose your preferred recommendation method</p>
+                        <h2 className="text-2xl font-bold text-text-primary mb-2">推荐方式</h2>
+                        <p className="text-text-secondary text-sm">选择更适合当前图书的推荐策略</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-6">
                         <div className="bg-bg-body p-8 rounded-xl border border-border hover:shadow-md transition-all text-center group">
                             <div className="w-11 h-11 bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white rounded-lg flex items-center justify-center mx-auto mb-5">
                                 <Users size={20} />
                             </div>
-                            <h3 className="text-[1.05rem] font-bold mb-3">Collaborative Filtering</h3>
-                            <p className="text-text-secondary text-sm leading-relaxed">Finds books loved by readers with similar tastes to yours</p>
+                            <h3 className="text-[1.05rem] font-bold mb-3">{METHOD_META.collaborative.label}</h3>
+                            <p className="text-text-secondary text-sm leading-relaxed">{METHOD_META.collaborative.description}</p>
                         </div>
                         <div className="bg-bg-body p-8 rounded-xl border border-border hover:shadow-md transition-all text-center group">
                             <div className="w-11 h-11 bg-gradient-to-r from-[#10b981] to-[#059669] text-white rounded-lg flex items-center justify-center mx-auto mb-5">
                                 <BookOpen size={20} />
                             </div>
-                            <h3 className="text-[1.05rem] font-bold mb-3">Content-Based</h3>
-                            <p className="text-text-secondary text-sm leading-relaxed">Analyzes book content, genres, and metadata to find similar titles</p>
+                            <h3 className="text-[1.05rem] font-bold mb-3">{METHOD_META.content.label}</h3>
+                            <p className="text-text-secondary text-sm leading-relaxed">{METHOD_META.content.description}</p>
                         </div>
                         <div className="bg-bg-body p-8 rounded-xl border border-border hover:shadow-md transition-all text-center group">
                             <div className="w-11 h-11 bg-gradient-to-r from-[#f59e0b] to-[#d97706] text-white rounded-lg flex items-center justify-center mx-auto mb-5">
                                 <Shuffle size={20} />
                             </div>
-                            <h3 className="text-[1.05rem] font-bold mb-3">Hybrid Model</h3>
-                            <p className="text-text-secondary text-sm leading-relaxed">Combines both methods for the most accurate recommendations</p>
+                            <h3 className="text-[1.05rem] font-bold mb-3">{METHOD_META.hybrid.label}</h3>
+                            <p className="text-text-secondary text-sm leading-relaxed">{METHOD_META.hybrid.description}</p>
                         </div>
                     </div>
                 </div>
@@ -145,8 +159,8 @@ const HomeView = ({ popularBooks, onRecommend }) => {
             <section className="py-20">
                 <div className="container mx-auto max-w-7xl px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-2xl font-bold text-text-primary mb-2">Trending Books</h2>
-                        <p className="text-text-secondary text-sm">Top rated books by our community</p>
+                        <h2 className="text-2xl font-bold text-text-primary mb-2">热门图书</h2>
+                        <p className="text-text-secondary text-sm">基于样本数据中评分和热度筛选的图书</p>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
                         {popularBooks.map((book, i) => (

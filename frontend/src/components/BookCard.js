@@ -1,7 +1,10 @@
 import React from 'react';
 import { Sidebar as Shuffle, Users, BookOpen, ChartLine } from 'lucide-react';
+import { METHOD_META, getMethodMeta } from '../utils/recommendationLabels';
 
 const BookCard = ({ book, onRecommend, mode = 'popular' }) => {
+    const bookMethodMeta = getMethodMeta(book.type);
+
     return (
         <div className="book-card bg-white border border-border rounded-xl flex flex-col h-full group">
             <div className="book-card-image relative aspect-[3/4] p-4 flex items-center justify-center bg-bg-body border-b border-border rounded-t-xl overflow-hidden">
@@ -9,10 +12,10 @@ const BookCard = ({ book, onRecommend, mode = 'popular' }) => {
                     <>
                         <div className={`type-badge method-badge-${book.type || 'hybrid'} absolute top-2 right-2 scale-75 origin-top-right`}>
                             {book.type === 'hybrid' ? <Shuffle size={12} /> : book.type === 'collaborative' ? <Users size={12} /> : <BookOpen size={12} />}
-                            <span className="ml-1 uppercase">{book.type || 'hybrid'}</span>
+                            <span className="ml-1">{bookMethodMeta.shortLabel}</span>
                         </div>
                         <div className="score-badge absolute bottom-2 left-2 bg-black/70 text-[#34d399] px-2 py-1 rounded text-[0.68rem] font-bold flex items-center gap-1">
-                            <ChartLine size={10} /> {Math.round((book.score || 0.85) * 100)}% Match
+                            <ChartLine size={10} /> {Math.round((book.score || 0.85) * 100)}% 推荐强度
                         </div>
                     </>
                 )}
@@ -33,7 +36,7 @@ const BookCard = ({ book, onRecommend, mode = 'popular' }) => {
                 </p>
                 {(book.year || book.publisher) && (
                     <p className="book-card-meta text-[0.75rem] text-text-muted mb-4 italic">
-                        {book.year || 'N/A'} • {book.publisher || 'N/A'}
+                        {book.year || '年份未知'} / {book.publisher || '出版社未知'}
                     </p>
                 )}
 
@@ -41,23 +44,23 @@ const BookCard = ({ book, onRecommend, mode = 'popular' }) => {
                     <button
                         onClick={() => onRecommend(book.title, 'hybrid')}
                         className="action-btn flex-1 flex items-center justify-center gap-1.5 p-2 rounded-md border border-border text-text-secondary hover:text-accent hover:border-accent hover:bg-bg-hover transition-all active:scale-95 text-[0.7rem] font-bold"
-                        title="Hybrid"
+                        title={METHOD_META.hybrid.label}
                     >
-                        <Shuffle size={12} /> Hybrid
+                        <Shuffle size={12} /> {METHOD_META.hybrid.shortLabel}
                     </button>
                     <button
                         onClick={() => onRecommend(book.title, 'collaborative')}
                         className="action-btn flex-1 flex items-center justify-center gap-1.5 p-2 rounded-md border border-border text-text-secondary hover:text-accent hover:border-accent hover:bg-bg-hover transition-all active:scale-95 text-[0.7rem] font-bold"
-                        title="Collaborative"
+                        title={METHOD_META.collaborative.label}
                     >
-                        <Users size={12} /> Collab
+                        <Users size={12} /> {METHOD_META.collaborative.shortLabel}
                     </button>
                     <button
                         onClick={() => onRecommend(book.title, 'content')}
                         className="action-btn flex-1 flex items-center justify-center gap-1.5 p-2 rounded-md border border-border text-text-secondary hover:text-accent hover:border-accent hover:bg-bg-hover transition-all active:scale-95 text-[0.7rem] font-bold"
-                        title="Content-Based"
+                        title={METHOD_META.content.label}
                     >
-                        <BookOpen size={12} /> Content
+                        <BookOpen size={12} /> {METHOD_META.content.shortLabel}
                     </button>
                 </div>
             </div>

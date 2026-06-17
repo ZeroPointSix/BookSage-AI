@@ -1,12 +1,12 @@
 [project]
 name = "booksage-ai"
 version = "2.0.0"
-description = "AI-powered book recommendation system"
+description = "Chinese intelligent book recommendation system built with FastAPI and hybrid recommendation models"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "Md Emon Hasan", email = "iconicemon01@gmail.com"}
+    {name = "ZeroPointSix"}
 ]
 keywords = ["book", "recommendation", "ai", "machine-learning", "fastapi"]
 classifiers = [
