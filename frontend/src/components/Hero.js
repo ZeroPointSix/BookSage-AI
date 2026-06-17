@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Sparkles, Sidebar as Shuffle, Users, BookOpen } from 'lucide-react';
+import { METHOD_META } from '../utils/recommendationLabels';
 
 const Hero = ({ onRecommend }) => {
     const [query, setQuery] = useState('');
@@ -38,15 +39,14 @@ const Hero = ({ onRecommend }) => {
         <section className="hero-section py-20 flex flex-col items-center text-center px-4 bg-hero text-white mb-20 rounded-3xl shadow-xl">
             <div className="hero-badge px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-sm font-medium mb-6 flex items-center gap-2">
                 <Sparkles size={16} />
-                AI-Powered Recommendations
+                AI 智能图书推荐
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
-                BookSage-AI
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-4">
+                书灵 BookSage
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mb-10 leading-relaxed">
-                Discover your next favorite book with our intelligent hybrid recommendation engine
-                that learns from millions of readers
+                基于协同过滤、内容相似度与混合策略，为读者快速发现下一本值得阅读的书。
             </p>
 
             <div className="search-container w-full max-w-xl relative mb-8">
@@ -54,7 +54,7 @@ const Hero = ({ onRecommend }) => {
                     <input
                         type="text"
                         className="search-input flex-1 py-4 px-6 text-slate-800 focus:outline-none text-lg"
-                        placeholder="Search for a book you love..."
+                        placeholder="搜索一本你喜欢的书..."
                         value={query}
                         onChange={handleSearchChange}
                         onKeyDown={(e) => e.key === 'Enter' && setShowButtons(true)}
@@ -62,6 +62,7 @@ const Hero = ({ onRecommend }) => {
                     <button
                         className="bg-accent hover:bg-accent-hover px-6 text-white transition-colors"
                         onClick={() => setShowButtons(true)}
+                        aria-label="显示推荐方式"
                     >
                         <Search size={22} />
                     </button>
@@ -93,21 +94,21 @@ const Hero = ({ onRecommend }) => {
                         className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-6 py-3 rounded-lg font-bold text-sm shadow-md hover:-translate-y-1 transition-all flex items-center gap-2"
                     >
                         <Shuffle size={16} />
-                        Hybrid
+                        {METHOD_META.hybrid.label}
                     </button>
                     <button
                         onClick={() => handleAction('collaborative')}
                         className="bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white px-6 py-3 rounded-lg font-bold text-sm shadow-md hover:-translate-y-1 transition-all flex items-center gap-2"
                     >
                         <Users size={16} />
-                        Collaborative
+                        {METHOD_META.collaborative.label}
                     </button>
                     <button
                         onClick={() => handleAction('content')}
                         className="bg-gradient-to-r from-emerald-500 to-emerald-700 hover:from-emerald-600 hover:to-emerald-800 text-white px-6 py-3 rounded-lg font-bold text-sm shadow-md hover:-translate-y-1 transition-all flex items-center gap-2"
                     >
                         <BookOpen size={16} />
-                        Content-Based
+                        {METHOD_META.content.label}
                     </button>
                 </div>
             )}

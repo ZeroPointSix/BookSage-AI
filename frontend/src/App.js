@@ -9,7 +9,7 @@ function App() {
   const [recommendations, setRecommendations] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [view, setView] = useState('home'); // 'home' or 'results'
+  const [view, setView] = useState('home');
   const [method, setMethod] = useState('hybrid');
   const [bookTitle, setBookTitle] = useState('');
 
@@ -61,7 +61,7 @@ function App() {
         <div className="fixed inset-0 z-[100] bg-white/60 backdrop-blur-sm flex items-center justify-center">
           <div className="flex flex-col items-center gap-4">
             <span className="loading loading-spinner loading-lg text-accent"></span>
-            <p className="text-accent font-bold animate-pulse uppercase tracking-widest text-xs">Finding matches...</p>
+            <p className="text-accent font-bold animate-pulse text-xs">正在计算推荐结果...</p>
           </div>
         </div>
       )}

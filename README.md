@@ -1,308 +1,153 @@
-# **BookSage AI: hybrid book recommendation system**
+# 书灵 BookSage：智能图书推荐系统
 
-<p align="center">
-  <a href="https://scikit-learn.org/"><img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-learn"></a>
-  <a href="https://pandas.pydata.org/"><img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas"></a>
-  <a href="https://numpy.org/"><img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy"></a>
-  <a href="https://scipy.org/"><img src="https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white" alt="SciPy"></a>
-</p>
+书灵 BookSage 是一个中文化的智能图书推荐系统展示项目。项目基于 Book-Crossing 图书数据集和已训练模型，提供热门图书浏览、图书搜索、协同过滤推荐、内容相似推荐和混合推荐能力，适合作为课程设计、实训项目或推荐系统方向的工程展示。
 
-<p align="center">
-  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
-  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"></a>
-  <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"></a>
-  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind"></a>
-  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"></a>
-</p>
+## 项目简介
 
-BookSage AI is a **hybrid book recommendation system** combining **Collaborative Filtering (KNN-based)** and **Content-Based (TF-IDF + Cosine Similarity)** models, with a weighted hybrid approach for personalized results. The project ingests and preprocesses large-scale book datasets, applies active-user and popular-book filtering, and dynamically generates recommendations enriched with metadata (title, author, publisher, year, and cover image). I engineered a **modern, monolithic architecture** with separate **FastAPI JSON API** and **React (Tailwind/DaisyUI) Frontend**, ensuring scalability and maintainability. The system is fully containerized with **Docker**, featuring automated orchestration and a robust **CI/CD pipeline** with 100% backend test coverage and comprehensive frontend unit tests. This design demonstrates proficiency in **ML model building, asynchronous API development, modern SPA implementation, containerization, and industry-grade deployment workflows**.
+本项目在原有 BookSage-AI 工程基础上完成中文化和提交材料化改造，保留 FastAPI 后端、React 前端、Docker 编排和既有推荐模型，不重写底层算法，重点优化中文使用体验、项目说明和验收可读性。
 
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/648d13d4-12d7-4fbe-95ca-a7684430016f" width="100%" controls>
-    Your browser does not support the video tag.
-  </video>
-</div>
+核心流程：搜索一本图书 -> 选择推荐方式 -> 查看推荐结果和推荐强度。
 
-<div align="center">
-  <img src="app.png" alt="BookSage-AI" width="100%">
-</div>
+## 功能特点
 
-<div align="center">
-  <img src="app-1.png" alt="BookSage-AI" width="100%">
-</div>
+- 图书搜索：根据关键词搜索图书标题，并展示作者和封面。
+- 热门图书：展示样本数据中较热门的图书。
+- 协同过滤：根据相似读者的评分行为推荐图书。
+- 内容相似：根据图书内容、作者、出版信息等特征推荐相近作品。
+- 混合推荐：结合协同过滤和内容相似度，输出更稳妥的推荐结果。
+- 中文界面：首页、按钮、结果页、空状态、加载状态和页脚均已中文化。
+- 可解释展示：结果页展示当前推荐方式、方式说明和推荐强度。
 
----
+## 技术栈
 
-## **Live Demo**
+| 模块 | 技术 |
+| --- | --- |
+| 前端 | React 19、Vite、Tailwind CSS、DaisyUI、Lucide React |
+| 后端 | FastAPI、Uvicorn、Pydantic |
+| 推荐模型 | 协同过滤、TF-IDF 内容相似、混合加权推荐 |
+| 数据处理 | Pandas、NumPy、SciPy、scikit-learn |
+| 部署 | Docker、Docker Compose、Nginx |
+| 测试 | Vitest、Testing Library、Pytest |
 
-**Try the Hybrid Book Recommendation System live:** [https://booksage-ai.onrender.com/](https://booksage-ai.onrender.com/)
+## 系统架构
 
----
-
-## **Core Technologies**
-
-| **Category**                | **Technology / Resource**                                                                 |
-| --------------------------- | ----------------------------------------------------------------------------------------- |
-| **Core Language**           | Python 3.11                                                                               |
-| **Backend Framework**       | FastAPI                                                     |
-| **Data Processing**         | Pandas (Data Cleaning & Merging), NumPy (Matrix Ops)                                      |
-| **Recommendation Models**   | **Hybrid System**: Collaborative Filtering + Content-Based Filtering                      |
-| **Collaborative Filtering** | SciPy (`csr_matrix`), scikit-learn (`NearestNeighbors`)                                   |
-| **Content-Based Filtering** | scikit-learn (`TfidfVectorizer`, `cosine_similarity`)                                     |
-| **Hybrid Fusion Logic**     | Weighted average score combination                                                        |
-| **Data Sources**            | Book-Crossing Dataset (`BX-Books`, `BX-Users`, `BX-Ratings`)                              |
-| **Feature Engineering**     | TF-IDF on combined features (`title`, `author`, `publisher`, `year`)                      |
-| **Model Persistence**       | Pickle (Model & Processed Data Serialization)                                             |
-| **Memory System**           | In-memory caching of processed data for faster responses                                  |
-| **Evaluation Metrics**      | Popularity-based filtering, Active user filtering                                         |
-| **Orchestration Layer**     | Modular service classes (`DataLoader`, `DataPreprocessor`, `ModelManager`, `HybridModel`) |
-| **Frontend**                | React 19, Vite, Tailwind CSS, DaisyUI, Framer Motion                      |
-| **Deployment**              | Docker (Python 3.11-slim base), `requirements.txt` dependency locking                     |
-| **Portability**             | Pathlib-based cross-platform directory resolution                                         |
-| **Error Handling**          | Graceful fallbacks & empty results handling                                               |
-
----
-
-## **Comparison with Standard Systems**
-
-| Feature | BookSage AI | Typical Recommenders |
-|---------|------------|----------------------|
-| Method Flexibility | 3 modes + hybrid tuning | Usually single-method |
-| Cold Start Handling | Popular books fallback | Often fails |
-| Explainability | Shows scores + metadata | Black-box results |
-| UI Customization | Adjustable weights/counts | Fixed parameters |
-
----
-
-## **Project Structure**
-
+```text
+用户浏览器
+  |
+  v
+React + Vite 前端
+  |
+  v
+FastAPI JSON API
+  |
+  v
+推荐引擎：协同过滤 / 内容相似 / 混合推荐
+  |
+  v
+Book-Crossing 数据与序列化模型
 ```
+
+## 推荐算法说明
+
+### 协同过滤
+
+协同过滤通过读者历史评分行为构建相似关系，从“相似读者喜欢什么”出发，为当前图书生成推荐。
+
+### 内容相似
+
+内容相似推荐通过 TF-IDF 和余弦相似度等方式分析图书文本与元数据特征，从“这本书和哪些书更像”出发生成推荐。
+
+### 混合推荐
+
+混合推荐将协同过滤和内容相似推荐结果进行加权融合，兼顾用户群体偏好和图书内容相似性，是默认推荐方式。
+
+## API 接口
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | `/api/popular` | 获取热门图书 |
+| GET | `/api/search_books?query=关键词` | 搜索图书 |
+| POST | `/api/recommend` | 根据 `book_title` 和 `method` 获取推荐 |
+| GET | `/api/health` | 健康检查 |
+
+`method` 支持：
+
+- `hybrid`：混合推荐
+- `collaborative`：协同过滤
+- `content`：内容相似
+
+## 本地运行
+
+### 使用 Docker Compose
+
+```bash
+git clone https://github.com/ZeroPointSix/BookSage-AI.git
+cd BookSage-AI
+docker compose up -d --build
+```
+
+启动后访问：
+
+- 前端：`http://127.0.0.1:3000`
+- 后端：`http://127.0.0.1:8000`
+- 健康检查：`http://127.0.0.1:8000/api/health`
+
+### 前端单独运行
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### 后端单独运行
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+## 测试与验证
+
+```bash
+cd frontend
+npm install
+npm run build
+npm test -- --run
+```
+
+```bash
+cd backend
+pip install -r requirements.txt
+pytest
+```
+
+部署验收建议检查：
+
+- 首页中文标题、搜索框、推荐方式和热门图书正常显示。
+- 搜索图书后可以切换混合推荐、协同过滤和内容相似。
+- 结果页能展示推荐方式说明、推荐数量和推荐强度。
+- `/api/health` 返回 `healthy` 且 `models_loaded` 为可用状态。
+
+## 项目目录
+
+```text
 BookSage-AI/
-├── .github/
-│   └── workflows/
-│       └── main.yml             # CI/CD Pipeline tracking tests and linting
-|
-├── backend/                     # FastAPI Backend service
-│   ├── app/                     # Core application package
-│   │   ├── core/                # Configuration and system-wide utilities
-│   │   │   ├── config.py
-│   │   │   ├── logger.py
-│   │   │   ├── models.py
-│   │   │   └── __init__.py
-│   │   ├── data/                # Raw book-crossing dataset (CSV)
-│   │   │   ├── BX-Book-Ratings.csv
-│   │   │   ├── BX-Books.csv
-│   │   │   └── BX-Users.csv
-│   │   ├── logs/                # Application runtime logs
-│   │   │   └── app.log          # System execution log file
-│   │   ├── models/              # Pickled ML models and processed data
-│   │   │   ├── book_pivot.pkl
-│   │   │   ├── books_content.pkl
-│   │   │   ├── books_data.pkl
-│   │   │   ├── cb_model.pkl
-│   │   │   ├── cf_model.pkl
-│   │   │   ├── content_sim_matrix.pkl
-│   │   │   ├── final_rating.pkl
-│   │   │   ├── tfidf_vectorizer.pkl
-│   │   │   └── title_to_idx.pkl
-│   │   ├── services/            # Recommendation engine components
-│   │   │   ├── collaborative_model.py
-│   │   │   ├── content_model.py
-│   │   │   ├── data_loader.py
-│   │   │   ├── data_preprocessor.py
-│   │   │   ├── hybrid_model.py
-│   │   │   ├── model_manager.py
-│   │   │   ├── recommendation_engine.py
-│   │   │   └── __init__.py
-│   │   ├── main.py              # Application entry point (FastAPI)
-│   │   └── train_models.py      # Script to retrain recommendation models
-│   ├── tests/                   # Backend testing suite
-│   │   ├── conftest.py
-│   │   ├── test_collaborative_model.py
-│   │   ├── test_config.py
-│   │   ├── test_content_model.py
-│   │   ├── test_data_loader.py
-│   │   ├── test_data_preprocessor.py
-│   │   ├── test_endpoints.py    # API endpoint tests (100% coverage)
-│   │   ├── test_hybrid_model.py
-│   │   ├── test_logger.py
-│   │   ├── test_model_manager.py
-│   │   ├── test_models.py
-│   │   ├── test_recommendation_engine.py
-│   │   └── __init__.py
-│   ├── Dockerfile               # Backend containerization
-│   ├── pyproject.toml           # Backend build and lint config
-│   ├── requirements.txt         # Backend Python dependencies
-│   ├── run.py                   # Service-level runner
-│   └── setup.py                 # Backend package installation
-|
-├── frontend/                    # React SPA (Vite + Tailwind + DaisyUI)
-│   ├── public/                  # Public static assets
-│   ├── src/                     # Source code
-│   │   ├── components/          # Reusable UI components
-│   │   │   ├── Background.js
-│   │   │   ├── BookCard.js
-│   │   │   ├── BookCard.test.js # Frontend unit tests
-│   │   │   ├── Hero.js
-│   │   │   └── Hero.test.js
-│   │   ├── App.css
-│   │   ├── App.js               # Main application logic
-│   │   ├── App.test.js
-│   │   ├── index.css
-│   │   ├── index.js
-│   │   ├── reportWebVitals.js
-│   │   └── setupTests.js        # Vitest environment setup
-│   ├── Dockerfile               # Multi-stage production build (Nginx)
-│   ├── package.json             # Frontend dependencies and scripts
-│   ├── tailwind.config.js       # UI Design configuration
-│   ├── vite.config.js           # Frontend build tool config
-│   └── vitest.config.js         # Frontend testing configuration
-|
-├── notebooks/                   # Research and experimental notebooks
-│   └── experiment.ipynb         
-|
-├── .gitignore                   # Project-wide ignore rules
-├── app.png                      # Demo picture
-├── app-1.png                    # Demo picture
-├── demo.mp4                     # Demo video
-├── docker-compose.yml   
-├── LICENSE   
-├── README.md                    # Project documentation
-├── render.yml                   # Production deployment config
-└── run.py                       # local runner for backend and frontend
+├── backend/                 # FastAPI 后端与推荐模型
+├── frontend/                # React 前端界面
+├── docs/                    # 改造计划与项目文档
+├── docker-compose.yml       # 前后端 Docker 编排
+├── PROJECT_REPORT.md        # 中文项目报告
+└── README.md                # 中文提交版说明
 ```
 
----
+## 后续扩展方向
 
-## **Architecture Diagram (Mermaid)**
-```mermaid
-graph TD
-    A[Raw Data: BX-Books, BX-Users, BX-Ratings] --> B[Data Preprocessing & Feature Engineering]
-    B --> C[Collaborative Filtering Model]
-    B --> D[Content-Based Model]
-    
-    C --> E[User-Item Matrix - csr_matrix]
-    D --> F[TF-IDF Features - Title+Author+Publisher+Year]
-    
-    E --> G[Hybrid Recommender - Weighted Score Fusion]
-    F --> G
-    
-    G --> H[FastAPI JSON API - Endpoints for Recommendations]
-    H --> I[Frontend: React SPA + Tailwind/DaisyUI]
-    
-    subgraph Deployment
-        J[Docker Compose Orchestration]
-        J --> H
-        J --> I
-    end
-    
-    G --> K[Model Persistence - Pickle Serialization]
-```
-
----
-
-## Quick Start (Automated)
-
-### Prerequisites
-
-- Python 3.10+
-- Node.js & npm
-
-### One-Click Setup & Run
-
-The project includes an intelligent launcher that automatically handles dependency installation for both the backend and frontend.
-
-```bash
-# Clone the repository
-git clone https://github.com/Md-Emon-Hasan/BookSage-AI.git
-cd BookSage-AI
-
-# Run the automated setup and launcher
-python run.py
-```
-
-> [!TIP]
-> The script will automatically detect if `node_modules` or Python packages are missing and install them for you before starting the services.
-
-### Running the Application
-
-#### **Local Development (Simultaneous)**
-Use the unified local runner at the project root to start both services:
-```bash
-cd BookSage-AI
-python run.py
-```
-*   **Backend**: `http://127.0.0.1:8000`
-*   **Frontend**: `http://localhost:5173` (with API proxy to 8000)
-
-#### **Individual Services**
-```bash
-# Backend only
-cd backend && python run.py
-
-# Frontend only
-cd frontend && npm run dev
-```
-
----
-
-## API Endpoints (FastAPI)
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/popular` | Get popular books (JSON) |
-| POST | `/api/recommend` | Get book recommendations (JSON) |
-| GET | `/api/search_books` | Search books by title (JSON) |
-| GET | `/api/health` | Health check endpoint |
-
-## Docker
-
-```bash
-# Build and run
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop
-docker-compose down
-```
-
-## Testing & Quality Assurance
-
-### Backend (Pytest)
-```bash
-# Run all backend tests
-cd backend && pytest tests/ -v
-
-# Run with coverage (100% Target)
-pytest tests/ -v --cov=app --cov-report=term-missing
-```
-
-### Frontend (Vitest)
-```bash
-# Run all frontend tests
-cd frontend && npm test
-
-# Run with coverage
-npm run test:coverage
-```
-
-### CI/CD Pipeline
-Our GitHub Actions pipeline (`.github/workflows/main.yml`) automatically performs the following on every push:
-1. **Linting**: flake8 and isort for backend, ESLint for frontend.
-2. **Backend Testing**: Runs full suite with 100% coverage requirement.
-3. **Frontend Testing**: Runs Vitest suite for component integrity.
-4. **Docker Build**: Verifies that both services build correctly.
-
----
-  
-**Prepared by:**  
-
-**Md Emon Hasan**  
-**Email:** [emon.mlengineer@gmail.com](mailto:emon.mlengineer@gmail.com)
-**WhatsApp:** [+8801834363533](https://wa.me/8801834363533)  
-**GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)  
-**LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan-695483237/)  
-**Facebook:** [Md Emon Hasan](https://www.facebook.com/mdemon.hasan2001/)
+- 增加用户登录和个人收藏。
+- 引入真实用户行为数据进行在线更新。
+- 增加推荐解释字段，例如相似作者、相似主题或评分贡献。
+- 增加后台管理页，用于查看模型状态和数据统计。
+- 补充项目截图、演示 PPT 和答辩讲稿。

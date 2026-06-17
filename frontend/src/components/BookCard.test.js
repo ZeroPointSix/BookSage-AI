@@ -21,7 +21,7 @@ describe('BookCard', () => {
         const onRecommend = vi.fn();
         render(<BookCard book={mockBook} onRecommend={onRecommend} />);
 
-        const hybridButton = screen.getByTitle('Hybrid');
+        const hybridButton = screen.getByTitle('混合推荐');
         fireEvent.click(hybridButton);
 
         expect(onRecommend).toHaveBeenCalledWith(mockBook.title, 'hybrid');
